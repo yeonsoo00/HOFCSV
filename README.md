@@ -24,9 +24,9 @@ The intended biological questions are:
 Model attribution is not evidence of causality or pathogenicity. It reports
 how the trained model uses an SV or gene, not whether that feature causes OFC.
 
-## Model D
+## Model
 
-Model D is the full hierarchical OFC-guided architecture:
+The full hierarchical OFC-guided architecture model:
 
 ```text
 SVs for one person
@@ -83,8 +83,7 @@ base_data.py     Variable-length person datasets and padded collation
 data.py          Family splits and balanced phenotype-guided sampling
 backbone.py      SV encoder, SV-to-gene aggregation, gene MIL, SSL decoder
 model.py         OFC projection, auxiliary classifier, and combined losses
-train.py         Model D training, evaluation, and checkpointing
-smoke_test.py    Synthetic checks for dimensions, leakage, gradients, and splits
+train.py         Model training, evaluation, and checkpointing
 requirements.txt Minimal Python dependencies
 ```
 
@@ -97,8 +96,8 @@ python prep_sv_data.py \
   --genome_build hg38
 
 python train.py \
-  --data svs_prepared.csv \
-  --output_dir runs/hierarchical_D \
+  --data <Path/to/csv> \
+  --output_dir hierarchical_results \
   --training_population all \
   --ofc_guidance \
   --autosomes_only \
@@ -114,4 +113,3 @@ python train.py \
 ```
 
 Use `--gpu_ids 0,1` for selected multi-GPU training or `--gpu_ids cpu` for CPU.
-Run `python smoke_test.py` to verify the core implementation.
