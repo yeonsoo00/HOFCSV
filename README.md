@@ -69,12 +69,8 @@ L_total = L_SSL + λ_contrastive L_contrastive + λ_OFC L_OFC
 - `L_OFC` is a weak weighted binary-classification loss that provides a signed
   OFC direction for later removal-based attribution.
 
-Training uses family-grouped train, validation, and untouched test splits.
-Guided batches are balanced across probands, parents, and 1KG controls and
-contain at most one person per family. Selected single- or multi-GPU training
-is supported with `--gpu_ids`.
-
 ## Included files
+Note that not all the files we used for training are included here. We will publish the original codes on github for camera-ready version.
 
 ```text
 prep_sv_data.py  Input validation, normalization, and categorical encoding
@@ -86,30 +82,3 @@ model.py         OFC projection, auxiliary classifier, and combined losses
 train.py         Model training, evaluation, and checkpointing
 requirements.txt Minimal Python dependencies
 ```
-
-## Training example
-
-```bash
-python prep_sv_data.py \
-  --input_csv /path/to/inheritance.csv \
-  --output_csv svs_prepared.csv \
-  --genome_build hg38
-
-python train.py \
-  --data <Path/to/csv> \
-  --output_dir hierarchical_results \
-  --training_population all \
-  --ofc_guidance \
-  --autosomes_only \
-  --lambda_contrastive 0.05 \
-  --lambda_ofc 0.05 \
-  --parent_negative_weight 0.5 \
-  --g1k_negative_weight 1.0 \
-  --contrastive_probands_per_batch 8 \
-  --contrastive_parents_per_batch 8 \
-  --contrastive_g1k_per_batch 8 \
-  --gpu_ids 0 \
-  --seed 42
-```
-
-Use `--gpu_ids 0,1` for selected multi-GPU training or `--gpu_ids cpu` for CPU.

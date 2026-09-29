@@ -13,18 +13,6 @@ What this script does
    - normalized SV-level CSV
    - gene vocabulary CSV
    - JSON manifest describing the preprocessing
-
-Important
----------
-`source` is preserved as metadata/target information and is NOT intended
-to be used as an input feature to the phenotype model.
-
-Example
--------
-python prep_sv_data.py \
-    --input_csv /data/cellvar.db/inheritance.csv \
-    --output_csv svs_prepared.csv \
-    --genome_build hg38
 """
 
 import argparse

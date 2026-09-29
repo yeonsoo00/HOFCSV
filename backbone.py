@@ -2,8 +2,7 @@
 """Hierarchical, linear-time SV -> gene -> person masked autoencoder.
 
 The genomic representation path and inheritance-conditioning path are kept in
-separate methods.  In ``conditioned`` mode no inheritance tensor is read by
-``encode_person``; this property is also exercised by the smoke test.
+separate methods.
 """
 
 import math
